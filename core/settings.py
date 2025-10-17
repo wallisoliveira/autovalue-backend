@@ -122,5 +122,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173", # Desenvolvimento local
     "http://127.0.0.1:5173", # Desenvolvimento local
+    "https://autovalue-frontend.vercel.app", # <--- ADICIONE ESTA LINHA!
     # Aqui entrará o domínio público do seu frontend (Vercel/Netlify)
 ]
