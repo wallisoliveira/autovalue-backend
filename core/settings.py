@@ -19,7 +19,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 # PERMISSÕES DE HOSTS (Puxa do .env e separa por vírgula)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',') 
 
 
 # Application definition
