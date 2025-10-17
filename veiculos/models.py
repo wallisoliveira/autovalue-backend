@@ -6,7 +6,7 @@ from django.contrib.auth.models import User  # Importamos User para ligar ao ava
 # --- 1. Modelo Veiculo ---
 class Veiculo(models.Model):
     # Identificação
-    placa = models.CharField(max_length=7, unique=True, verbose_name="Placa do Veículo")
+    placa = models.CharField(max_length=7, verbose_name="Placa do Veículo")
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=100)
     ano = models.IntegerField(verbose_name="Ano Fabricação")
