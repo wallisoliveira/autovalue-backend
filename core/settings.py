@@ -82,17 +82,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'autovalue_db',
-        'USER': 'postgres',
-        'PASSWORD': 'autovalue2025',
-        'HOST': 'localhost',
-        'PORT': '5433',
-        'OPTIONS': {                    
-            'client_encoding': 'UTF8',                       
-    }
-}
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL'),
+        conn_max_age=600,  # Adicionado para manter a conexão ativa (prática de produção)
+        ssl_require=True   # Adicionado para forçar SSL/TLS (padrão do Render)
+    )
 }
 
 # Password validation
