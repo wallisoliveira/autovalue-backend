@@ -49,18 +49,21 @@ class VeiculoViewSet(viewsets.ModelViewSet):
             margem_desejada=20 
         )
         
-        # 4. Cria o item inicial no Workflow (Kanban)
-        try:
-            etapa_inicial = WorkflowEtapa.objects.get(ordem=1)
-        except WorkflowEtapa.DoesNotExist:
-            etapa_inicial = WorkflowEtapa.objects.first()
-
-        WorkflowItem.objects.create(
-            veiculo=veiculo,
-            etapa_atual=etapa_inicial,
-            tmv_prioridade=simulacao_tmv
+      # 4. Cria o item inicial no Workflow (Kanban)
+        # CRIA OU OBTÉM A ETAPA 1, GARANTINDO QUE EXISTE:
+        etapa_inicial, created = WorkflowEtapa.objects.get_or_create(
+            ordem=1,
+            defaults={'nome': 'Comprado / Em Avaliação Final'}
         )
         
+        # O Django pode retornar None se a busca falhar (embora get_or_create seja mais seguro).
+        # Vamos garantir que etapa_inicial não seja None antes de usar.
+        if etapa_inicial:
+            WorkflowItem.objects.create(
+                veiculo=veiculo,
+                etapa_atual=etapa_inicial,
+                tmv_prioridade=simulacao_tmv
+            )
     def retrieve(self, request, *args, **kwargs):
         # Método padrão para GET (busca de um item específico)
         instance = self.get_object()
