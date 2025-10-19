@@ -13,7 +13,7 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SEGURANÇA (Puxando do .env)
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-ldgz(x=n=t69-@k^336y=uv)a2k*hfsi!k+mq7qklqjphl=bcb')
 
 # DEBUG: Puxa do .env (True para local, False para produção)
 DEBUG = config('DEBUG', default=True, cast=bool)
